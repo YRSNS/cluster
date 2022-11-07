@@ -2,43 +2,6 @@ from itertools import groupby
 import numpy as np
 
 
-
-def readMatrix(debug=False):
-    with open('data/matrix.txt', 'r') as f:
-        matrix = [[float(num) for num in line.split(',')] for line in f]
-    n = len(matrix[0])
-    matrix = np.array(matrix)
-    matrix = matrix.reshape(n, n)
-    matrix = matrix.astype('float64')
-
-    if debug:
-        print(matrix, end="\n\n")
-
-    return matrix, n
-
-
-def readInputs():
-    with open('data/input.txt') as f:
-        lines = f.readlines()
-    n_string = len(lines)
-    # print(lines)
-    for i in range(n_string):
-        lines[i] = lines[i].replace(" ", "")
-        if i != n_string - 1:
-            # eliminar \n en input.txt
-            lines[i] = lines[i][:-1]
-
-    print("String ingresados:")
-    colums_headers = []
-    for i, s in enumerate(lines):
-        header = "S" + str(i)
-        colums_headers.append(header)
-        print(header + " = ", s)
-    print("Strings en Lista:", lines)
-    print("Strings Reducidas en Lista:", colums_headers)
-    return lines, colums_headers
-
-
 def all_equal(iterable):
     g = groupby(iterable)
     return next(g, True) and not next(g, False)
